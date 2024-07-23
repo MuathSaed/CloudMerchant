@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - CloudMerchant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full text-center">
+        <img src="logo.svg" alt="Logo" class="mx-auto mb-6 w-100">
+        <p id="message" class="text-gray-700 text-xl font-semibold">Thank you for registering with us. We are verifying your account.</p>
+    </div>
+    <script>
+      const messageTag = document.getElementById('message');
+
+      window.addEventListener('DOMContentLoaded', async () => {
+          const params = new Proxy(new URLSearchParams(window.location.search), {
+              get: (searchParams, prop) => {
+                  return searchParams.get(prop);
+              }
+          });
+
+          const token = params.token;
+          const id = params.id;
+
+          console.log(token);
+          console.log(id);
+
+          const res = await fetch(`/auth/verify/`, {
+              method: 'POST',
+              body: JSON.stringify({token, id}),
+              headers: {
+                  'Content-Type': 'application/json; charset=utf-8'
+              }
+          })
+
+          if (!res.ok) {
+              const {message} = await res.json();
+              messageTag.innerText = message;
+              messageTag.className = 'text-red-500 text-xl font-semibold';
+              return;
+          }
+
+          const {message} = await res.json();
+          messageTag.innerText = message;
+          messageTag.className = 'text-green-500 text-xl font-semibold';
+      });
+    </script>
+</body>
+</html>

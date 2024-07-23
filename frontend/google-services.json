@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1071816326130",
+    "project_id": "gp1-2024",
+    "storage_bucket": "gp1-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071816326130:android:31a0c3b2f17f0b60f5896b",
+        "android_client_info": {
+          "package_name": "com.cloud.merchant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4VcO63mb96B5mreYnfF3_bMLHDEo6tcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
